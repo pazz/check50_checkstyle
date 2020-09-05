@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="check50_checkstyle",
-    version="0.1",
+    version="0.2",
     author="Patrick Totzke",
     author_email="patricktotzke@gmail.com",
     description="A check50 extension that wraps around "
@@ -24,7 +24,6 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=[
         'check50',
-        'check50_java',
     ],
     package_data={'check50_checkstyle': ['lib/*.jar']},
 )

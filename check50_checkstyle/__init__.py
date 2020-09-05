@@ -65,12 +65,12 @@ def run_checkstyle(checks_file=None, target=None,
     """
     Execute the Checkstyle CLI and return a report.
 
-    java and timeout parameters are as for :func:`check50_java.run`.
     The checkstyle standalone jar file will be added to the classpath.
 
     :param str checks_file: the path to the checks xml file to be used
     :param str target: the path to those files checkstyle should inspect
     :param java: interpreter to use (default :data:`check50_checkstyle.JAVA`)
+    :param timeout: number of seconds after which to time out and fail
 
     The return value is a list of CheckstyleWarning, each of which represents
     a complaint, as read from the XML report produced by checkstyle.
