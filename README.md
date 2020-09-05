@@ -9,6 +9,20 @@ For convenience, this package ships with the stand-alone CLI of checkstyle ([`ch
 
 ## Example Usage
 
+You need to import this module into your problem set (`__init.py__`):
+
+```python
+import check50_checkstyle
+```
+
+and declare `#- check50-checkstyle` it as a dependency in your `.cs50.yml` file:
+
+```yml
+check50:
+  dependencies:
+    - check50-checkstyle
+```
+
 Checkstyle needs an XML style definition file to run.
 The jar file contains two such definitions, following the sun or google style guides but both are rather "picky",i.e., complain about lots of minor stuff. Pick one of these style files and delete what you don't like.
 
@@ -20,19 +34,19 @@ Then you add a check50 check as follows. The target can be more specific of cour
 def checkstyle():
     """style police"""
     check50.include("style.xml")
-    check50_java.checkstyle.run_and_interpret_checkstyle(
+    check50_checkstyle.run_and_interpret_checkstyle(
         checks_file='style.xml',
         target='*.java')
+
 ```
 
-This will dump all warnings into the log (because check50 hard-codes its html template).
-Example output:
+This will dump all warnings into the log (because check50 hard-codes its html template). Example output:
 
 ```
 :( style police
     stylistic issues found
-    running java -jar checkstyle-8.35-all.jar -c style.xml -f xml *.java...
     Issues found:
+    - In Credit.java(line 4, char 5): Missing a Javadoc comment.
     - In Basket.java(line 2, char 1): Wrong lexicographical order for 'java.util.ArrayList' import. Should be before 'java.util.List'.
     - In Basket.java(line 19, char 5): Missing a Javadoc comment.
     - In Basket.java(line 27, char 5): Missing a Javadoc comment.
