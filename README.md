@@ -5,7 +5,7 @@ This is an extension for the [CS50 automarker check50][check50] that allows to r
 Checkstyle let's you complain about style issues, particularly in Java code, beyond what [style50][style50] (astyle) can do.
 For instance you can flag if identifiers don't adhere to Java's camelCase code conventions, or javadocs are missing.
 
-For convenience, this package ships with the stand-alone CLI of checkstyle ([`checkstyle-8.35-all.jar`](https://github.com/checkstyle/checkstyle/releases/), which is why it is so large.
+For convenience, this package ships with the stand-alone CLI of checkstyle ([`checkstyle-8.35-all.jar`](https://github.com/checkstyle/checkstyle/releases/)), which is why it is so large.
 
 ## Example Usage
 
