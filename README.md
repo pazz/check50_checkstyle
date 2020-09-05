@@ -1,4 +1,4 @@
-# check50_java
+# check50_checkstyle
 
 This is an extension for the [CS50 automarker check50][check50] that allows to run the static code analyser [checkstyle](https://checkstyle.org) and interpret the resulting XML report as check50 Failures.
 
