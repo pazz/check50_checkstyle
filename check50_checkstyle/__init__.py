@@ -88,6 +88,10 @@ def run_checkstyle(checks_file=None, target=None,
     # call subprocess and wait until it's done
     report = check50._api.run(cmdline).stdout(timeout=timeout)
 
+    # supress log message introduced in previous command
+    # which logs the full shell command (java -cp ..)
+    check50._api._log.clear()
+
     return read_checkstyle_xml(report)
 
 
