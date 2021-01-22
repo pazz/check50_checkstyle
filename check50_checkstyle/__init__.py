@@ -11,7 +11,7 @@ from check50._api import Failure
 
 ##########################
 JAVA = "java"
-CHECKSTYLE_JAR = "checkstyle-8.35-all.jar"
+CHECKSTYLE_JAR = "checkstyle-8.39-all.jar"
 
 CHECKSTYLE_JAR_PATH = os.path.join(
     os.path.abspath(os.path.dirname(__file__)),
