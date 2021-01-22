@@ -41,7 +41,8 @@ class CheckstyleWarning:
         return "In " + self.location() + ": " + self.data['message']
 
 
-def run_and_interpret_checkstyle(**kwargs):
+def run_and_interpret_checkstyle(rationale=None, log_msg=None,
+                                 log_individual_warnings=False, **kwargs):
     """
     Execute the checkstyle CLI runner, interpret and log all resulting warnings
     and raise check50 Failure if there were warnings.
@@ -50,14 +51,31 @@ def run_and_interpret_checkstyle(**kwargs):
     that encapsulates all warnings and is rendered nicely into html by check50.
     The problem is that check50 hard-codes its html template.
 
-    All parameters are as for :func:`run_checkstyle`.
+    :param rationale: the message given to the Failure raised in case there are
+                      warnings. The substring "{report}" will be replaced by an
+                      itemised list of warnings from checkstyle.
+    :param log_msg: the message passed on to check50.log in case there are
+                    warnings. Again, "{report}" will be substituted.
+    :param log_individual_warnings: if true, each warning will be logged on its
+                                    own.
+
+    All other parameters are as for :func:`run_checkstyle`.
     """
     report = run_checkstyle(**kwargs)
     if report:
-        check50.log("Issues found:")
-        for w in report:
-            check50.log("- " + str(w))
-        raise Failure(rationale="stylistic issues found")
+        # all warnings as one string
+        report_itemised = "\n".join(["- " + str(w) for w in report])
+
+        if log_msg:
+            check50.log(log_msg.format(report=report_itemised))
+        if log_individual_warnings:
+            for w in report:
+                check50.log("- " + str(w))
+        if rationale:
+            rationale = rationale.format(report=report_itemised)
+        else:
+            rationale = "issues found"
+        raise Failure(rationale=rationale)
 
 
 def run_checkstyle(checks_file=None, target=None,
