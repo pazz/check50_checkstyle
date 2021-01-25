@@ -101,7 +101,7 @@ def run_checkstyle(checks_file=None, target=None,
         '-f xml',
         target
     ]
-    cmdline = " ".join(cmd)
+    cmdline = " ".join(cmd) + " 2>/dev/null"
 
     # call subprocess and wait until it's done
     report = check50._api.run(cmdline).stdout(timeout=timeout)
